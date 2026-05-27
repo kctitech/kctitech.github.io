@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>KCTI 디자인 콘셉트 프리뷰 데스크</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;1,400&family=Space+Grotesk:wght@500;700&display=swap');
+
+    :root {
+      --bg-main: #05070a;
+      --card-bg: rgba(13, 17, 23, 0.7);
+      --text-main: #f3f4f6;
+      --text-muted: #9ca3af;
+      --accent-cyan: #06b6d4;
+      --accent-emerald: #10b981;
+      --accent-terracotta: #f43f5e;
+      --border-base: rgba(255, 255, 255, 0.05);
+      --font-sans: 'Plus Jakarta Sans', sans-serif;
+      --font-serif: 'Playfair Display', serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      background-color: var(--bg-main);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 60px 20px;
+      overflow-x: hidden;
+      position: relative;
+      background-image:
+        radial-gradient(circle at 10% 20%, rgba(6, 182, 212, 0.04) 0%, transparent 40%),
+        radial-gradient(circle at 90% 80%, rgba(16, 185, 129, 0.04) 0%, transparent 45%);
+    }
+
+    /* Background Ambience */
+    body::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(139, 92, 246, 0.04) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .home-wrap {
+      max-width: 1200px;
+      width: 100%;
+      z-index: 1;
+      text-align: center;
+    }
+
+    .home-kicker {
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 4px;
+      color: var(--accent-cyan);
+      margin-bottom: 20px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .home-kicker::before,
+    .home-kicker::after {
+      content: '';
+      display: inline-block;
+      width: 12px;
+      height: 1px;
+      background-color: var(--accent-cyan);
+    }
+
+    h1 {
+      font-family: var(--font-serif);
+      font-size: clamp(32px, 4.5vw, 56px);
+      font-weight: 600;
+      line-height: 1.15;
+      letter-spacing: -1.5px;
+      margin-bottom: 20px;
+      background: linear-gradient(to right, #ffffff, #e2e8f0, #94a3b8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    h1 em {
+      font-style: italic;
+      font-weight: 400;
+      color: var(--accent-cyan);
+    }
+
+    .home-lead {
+      font-size: clamp(15px, 1.1vw, 19px);
+      color: var(--text-muted);
+      max-width: 720px;
+      margin: 0 auto 60px;
+      line-height: 1.7;
+    }
+
+    /* Concept Selector Grid */
+    .concept-list {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+      width: 100%;
+      margin-bottom: 48px;
+    }
+
+    .concept-card {
+      background-color: var(--card-bg);
+      border: 1px solid var(--border-base);
+      border-radius: 24px;
+      padding: 48px 36px;
+      min-height: 380px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      text-align: left;
+      position: relative;
+      overflow: hidden;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+
+    .concept-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(255,255,255,0.02), transparent);
+      pointer-events: none;
+    }
+
+    /* Glow overlays on hover */
+    .concept-card::after {
+      content: '';
+      position: absolute;
+      bottom: -50px;
+      right: -50px;
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      filter: blur(50px);
+      opacity: 0.15;
+      pointer-events: none;
+      transition: all 0.4s ease;
+    }
+
+    .card-immersive::after { background-color: var(--accent-cyan); }
+    .card-command::after { background-color: var(--accent-emerald); }
+    .card-atlas::after { background-color: var(--accent-terracotta); }
+
+    .concept-card:hover {
+      transform: translateY(-10px);
+      background-color: rgba(20, 27, 38, 0.9);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    }
+
+    .concept-card.card-immersive:hover {
+      border-color: rgba(6, 182, 212, 0.35);
+      box-shadow:
+        0 20px 45px rgba(0, 0, 0, 0.5),
+        0 0 20px rgba(6, 182, 212, 0.15);
+    }
+
+    .concept-card.card-command:hover {
+      border-color: rgba(16, 185, 129, 0.35);
+      box-shadow:
+        0 20px 45px rgba(0, 0, 0, 0.5),
+        0 0 20px rgba(16, 185, 129, 0.15);
+    }
+
+    .concept-card.card-atlas:hover {
+      border-color: rgba(244, 63, 94, 0.35);
+      box-shadow:
+        0 20px 45px rgba(0, 0, 0, 0.5),
+        0 0 20px rgba(244, 63, 94, 0.15);
+    }
+
+    .concept-card:hover::after {
+      transform: scale(1.4);
+      opacity: 0.3;
+    }
+
+    .concept-card span.num {
+      font-size: 14px;
+      font-weight: 800;
+      color: var(--text-muted);
+      border: 1px solid var(--border-base);
+      background: rgba(255,255,255,0.02);
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 40px;
+    }
+
+    .card-immersive:hover span.num { color: var(--accent-cyan); border-color: rgba(6, 182, 212, 0.2); }
+    .card-command:hover span.num { color: var(--accent-emerald); border-color: rgba(16, 185, 129, 0.2); }
+    .card-atlas:hover span.num { color: var(--accent-terracotta); border-color: rgba(244, 63, 94, 0.2); }
+
+    .concept-card-content h3 {
+      font-size: 26px;
+      font-weight: 700;
+      letter-spacing: -0.75px;
+      margin-bottom: 12px;
+    }
+
+    .concept-card-content p {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 24px;
+    }
+
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 40px;
+    }
+
+    .tag-row span {
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border-base);
+      padding: 4px 8px;
+      border-radius: 4px;
+      color: var(--text-secondary);
+    }
+
+    /* Action arrow button in cards */
+    .card-action {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      font-weight: 700;
+      color: #ffffff;
+      padding-top: 10px;
+    }
+
+    .card-action svg {
+      transition: transform 0.3s ease;
+    }
+
+    .concept-card:hover .card-action svg {
+      transform: translateX(6px);
+    }
+
+    .card-immersive:hover .card-action { color: var(--accent-cyan); }
+    .card-command:hover .card-action { color: var(--accent-emerald); }
+    .card-atlas:hover .card-action { color: var(--accent-terracotta); }
+
+    /* Footer Meta Info */
+    .home-footer {
+      max-width: 1200px;
+      width: 100%;
+      margin-top: 40px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border-base);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1;
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .home-footer a {
+      color: var(--text-muted);
+    }
+
+    .home-footer a:hover {
+      color: #ffffff;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 1024px) {
+      .concept-list {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+      .concept-card {
+        min-height: 280px;
+        padding: 36px 28px;
+      }
+    }
+  </style>
+</head>
+<body class="concept-home">
+
+  <main class="home-wrap">
+    <p class="home-kicker">Design Concept Preview Desk</p>
+    <h1>한국문화기술연구소<br>기술교류 <em>디자인 콘셉트</em></h1>
+    <p class="home-lead">동일한 R&D 연구 성과 명세와 데이터를 기초로 하여, 서로 다른 극단적인 브랜드 성격과 시각적 지향점을 지닌 세 가지 프리미엄 테마를 설계했습니다.</p>
+
+    <nav class="concept-list" aria-label="디자인 콘셉트 목록">
+
+      <a href="concept-01-immersive.html" class="concept-card card-immersive">
+        <div>
+          <span class="num">01</span>
+          <div class="concept-card-content">
+            <h3>Immersive Showcase</h3>
+            <p>미디어 아트 갤러리에 온 듯한 느낌을 선사하는 고해상도 다크 비주얼 테마. 실감형 가상현실, 공간 스토리텔링, 생체 반응 기술을 가장 극적이고 예술적으로 포장합니다.</p>
+            <div class="tag-row">
+              <span>DARK CYBER</span>
+              <span>GLASSMORPHISM</span>
+              <span>NEON LIGHTING</span>
+            </div>
+          </div>
+        </div>
+        <div class="card-action">
+          콘셉트 보기
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+        </div>
+      </a>
+
+      <a href="concept-02-command.html" class="concept-card card-command">
+        <div>
+          <span class="num">02</span>
+          <div class="concept-card-content">
+            <h3>Exchange Command</h3>
+            <p>Stripe, Linear 등의 최첨단 개발자 대시보드를 차용한 B2B 운영 모듈형 다크 테마. 기술 수요와 협력 매트릭스, 가시적인 R&D 메트릭을 고성능 콘솔 화면을 통해 보여줍니다.</p>
+            <div class="tag-row">
+              <span>B2B DEVELOPER</span>
+              <span>DATA CONSOLE</span>
+              <span>SPACE GROTESK</span>
+            </div>
+          </div>
+        </div>
+        <div class="card-action">
+          콘셉트 보기
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+        </div>
+      </a>
+
+      <a href="concept-03-atlas.html" class="concept-card card-atlas">
+        <div>
+          <span class="num">03</span>
+          <div class="concept-card-content">
+            <h3>Culture Tech Atlas</h3>
+            <p>럭셔리 인쇄 매거진, 국립 미술관 도록을 모티브로 한 웜 샌드 톤 에디토리얼 세리프 테마. 웅장한 타이포그래피와 넓은 여백을 통해 문화기술의 깊이와 품격을 전달합니다.</p>
+            <div class="tag-row">
+              <span>LUXURY EDITORIAL</span>
+              <span>MUSEUM ARCHIVE</span>
+              <span>SERIF TYPO</span>
+            </div>
+          </div>
+        </div>
+        <div class="card-action">
+          콘셉트 보기
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+        </div>
+      </a>
+
+    </nav>
+
+    <footer class="home-footer">
+      <p>&copy; GIST 한국문화기술연구소. All rights reserved.</p>
+      <p><a href="../index.html">메인 기술교류 페이지로 복귀</a></p>
+    </footer>
+  </main>
+
+</body>
+</html>
